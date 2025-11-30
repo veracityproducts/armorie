@@ -1,26 +1,312 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  /* ========== PRIMARY SCALE (Teal - 192) ========== */
+  --color-primary-50: var(--primary-50);
+  --color-primary-100: var(--primary-100);
+  --color-primary-200: var(--primary-200);
+  --color-primary-300: var(--primary-300);
+  --color-primary-400: var(--primary-400);
+  --color-primary-500: var(--primary-500);
+  --color-primary-600: var(--primary-600);
+  --color-primary-700: var(--primary-700);
+  --color-primary-800: var(--primary-800);
+  --color-primary-900: var(--primary-900);
+  --color-primary-950: var(--primary-950);
+
+  /* ========== SECONDARY SCALE (Rose - 359) ========== */
+  --color-secondary-50: var(--secondary-50);
+  --color-secondary-100: var(--secondary-100);
+  --color-secondary-200: var(--secondary-200);
+  --color-secondary-300: var(--secondary-300);
+  --color-secondary-400: var(--secondary-400);
+  --color-secondary-500: var(--secondary-500);
+  --color-secondary-600: var(--secondary-600);
+  --color-secondary-700: var(--secondary-700);
+  --color-secondary-800: var(--secondary-800);
+  --color-secondary-900: var(--secondary-900);
+  --color-secondary-950: var(--secondary-950);
+
+  /* ========== ACCENT SCALE (Slate Blue - 245) ========== */
+  --color-accent-50: var(--accent-50);
+  --color-accent-100: var(--accent-100);
+  --color-accent-200: var(--accent-200);
+  --color-accent-300: var(--accent-300);
+  --color-accent-400: var(--accent-400);
+  --color-accent-500: var(--accent-500);
+  --color-accent-600: var(--accent-600);
+  --color-accent-700: var(--accent-700);
+  --color-accent-800: var(--accent-800);
+  --color-accent-900: var(--accent-900);
+  --color-accent-950: var(--accent-950);
+
+  /* ========== SEMANTIC TOKENS ========== */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Sidebar */
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Charts */
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  /* Typography */
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  /* Radii */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --radius: 0.625rem;
+
+  /* ==========================================================
+     PRIMARY SCALE (Teal - Hue 192)
+     Anchor 500: oklch(0.772 0.019 192.76) — our soft teal
+     Compressed range for better color visibility
+     ========================================================== */
+  --primary-50:  oklch(0.98 0.008 192);
+  --primary-100: oklch(0.94 0.012 192);
+  --primary-200: oklch(0.90 0.016 192);
+  --primary-300: oklch(0.86 0.018 192);
+  --primary-400: oklch(0.81 0.019 192);
+  --primary-500: oklch(0.772 0.019 192.76);  /* ⬅ ANCHOR */
+  --primary-600: oklch(0.65 0.022 192);
+  --primary-700: oklch(0.52 0.028 192);
+  --primary-800: oklch(0.40 0.032 192);
+  --primary-900: oklch(0.28 0.028 192);
+  --primary-950: oklch(0.18 0.020 192);
+
+  /* ==========================================================
+     SECONDARY SCALE (Rose - Hue 359)
+     Anchor 500: oklch(0.72 0.045 359.76) — our warm rose
+     Compressed range: starts at 0.94 for visible color
+     ========================================================== */
+  --secondary-50:  oklch(0.97 0.018 359);
+  --secondary-100: oklch(0.90 0.035 359);
+  --secondary-200: oklch(0.86 0.048 359);
+  --secondary-300: oklch(0.82 0.052 359);
+  --secondary-400: oklch(0.77 0.050 359);
+  --secondary-500: oklch(0.72 0.045 359.76);  /* ⬅ ANCHOR */
+  --secondary-600: oklch(0.60 0.065 359);
+  --secondary-700: oklch(0.48 0.075 359);
+  --secondary-800: oklch(0.38 0.068 359);
+  --secondary-900: oklch(0.28 0.050 359);
+  --secondary-950: oklch(0.18 0.035 359);
+
+  /* ==========================================================
+     ACCENT SCALE (Slate Blue - Hue 245)
+     Anchor 500: oklch(0.52 0.045 245.52) — our slate blue
+     Compressed range: starts at 0.94 for visible color
+     ========================================================== */
+  --accent-50:  oklch(0.97 0.015 245);
+  --accent-100: oklch(0.90 0.028 245);
+  --accent-200: oklch(0.84 0.038 245);
+  --accent-300: oklch(0.76 0.045 245);
+  --accent-400: oklch(0.64 0.048 245);
+  --accent-500: oklch(0.52 0.045 245.52);  /* ⬅ ANCHOR */
+  --accent-600: oklch(0.42 0.050 245);
+  --accent-700: oklch(0.34 0.048 245);
+  --accent-800: oklch(0.26 0.042 245);
+  --accent-900: oklch(0.20 0.032 245);
+  --accent-950: oklch(0.14 0.022 245);
+
+  /* ========== SEMANTIC MAPPINGS ========== */
+  
+  /* Backgrounds */
+  --background: var(--primary-50);
+  --foreground: var(--primary-950);
+  
+  /* Cards & Popovers */
+  --card: oklch(1 0 0);
+  --card-foreground: var(--primary-950);
+  --popover: oklch(1 0 0);
+  --popover-foreground: var(--primary-950);
+  
+  /* Primary (teal - default actions) */
+  --primary: var(--primary-500);
+  --primary-foreground: var(--primary-950);
+  
+  /* Secondary (rose - warm emphasis) */
+  --secondary: var(--secondary-500);
+  --secondary-foreground: var(--secondary-950);
+  
+  /* Muted (light accent backgrounds) */
+  --muted: var(--accent-100);
+  --muted-foreground: var(--accent-700);
+  
+  /* Accent (rose for focus/highlights) */
+  --accent: var(--secondary-100);
+  --accent-foreground: var(--secondary-700);
+  
+  /* Destructive */
+  --destructive: oklch(0.577 0.245 27.325);
+  
+  /* Borders & Inputs */
+  --border: var(--primary-200);
+  --input: var(--primary-200);
+  --ring: var(--secondary-500);
+  
+  /* Charts */
+  --chart-1: var(--primary-500);
+  --chart-2: var(--secondary-500);
+  --chart-3: var(--accent-500);
+  --chart-4: oklch(0.78 0.06 80);
+  --chart-5: oklch(0.68 0.08 320);
+  
+  /* Sidebar */
+  --sidebar: var(--primary-100);
+  --sidebar-foreground: var(--primary-950);
+  --sidebar-primary: var(--primary-600);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: var(--primary-200);
+  --sidebar-accent-foreground: var(--primary-900);
+  --sidebar-border: var(--primary-200);
+  --sidebar-ring: var(--secondary-500);
+}
+
+.dark {
+  /* ==========================================================
+     PRIMARY SCALE (Teal - Dark Mode)
+     Scale inverts: 50 is darkest, 950 is lightest
+     ========================================================== */
+  --primary-50:  oklch(0.14 0.018 192);
+  --primary-100: oklch(0.18 0.020 192);
+  --primary-200: oklch(0.24 0.024 192);
+  --primary-300: oklch(0.32 0.028 192);
+  --primary-400: oklch(0.45 0.030 192);
+  --primary-500: oklch(0.58 0.028 192);
+  --primary-600: oklch(0.70 0.024 192);
+  --primary-700: oklch(0.80 0.018 192);
+  --primary-800: oklch(0.88 0.012 192);
+  --primary-900: oklch(0.94 0.008 192);
+  --primary-950: oklch(0.97 0.005 192);
+
+  /* ==========================================================
+     SECONDARY SCALE (Rose - Dark Mode)
+     Compressed range maintained in dark mode
+     ========================================================== */
+  --secondary-50:  oklch(0.14 0.030 359);
+  --secondary-100: oklch(0.20 0.042 359);
+  --secondary-200: oklch(0.28 0.055 359);
+  --secondary-300: oklch(0.38 0.065 359);
+  --secondary-400: oklch(0.52 0.070 359);
+  --secondary-500: oklch(0.65 0.065 359);
+  --secondary-600: oklch(0.75 0.055 359);
+  --secondary-700: oklch(0.84 0.042 359);
+  --secondary-800: oklch(0.90 0.030 359);
+  --secondary-900: oklch(0.94 0.020 359);
+  --secondary-950: oklch(0.97 0.012 359);
+
+  /* ==========================================================
+     ACCENT SCALE (Slate Blue - Dark Mode)
+     Compressed range maintained in dark mode
+     ========================================================== */
+  --accent-50:  oklch(0.12 0.020 245);
+  --accent-100: oklch(0.18 0.028 245);
+  --accent-200: oklch(0.26 0.038 245);
+  --accent-300: oklch(0.36 0.048 245);
+  --accent-400: oklch(0.48 0.052 245);
+  --accent-500: oklch(0.60 0.050 245);
+  --accent-600: oklch(0.72 0.042 245);
+  --accent-700: oklch(0.82 0.030 245);
+  --accent-800: oklch(0.88 0.022 245);
+  --accent-900: oklch(0.93 0.015 245);
+  --accent-950: oklch(0.97 0.008 245);
+
+  /* ========== SEMANTIC MAPPINGS (Dark) ========== */
+  
+  /* Backgrounds */
+  --background: var(--primary-50);
+  --foreground: var(--primary-950);
+  
+  /* Cards & Popovers */
+  --card: var(--primary-100);
+  --card-foreground: var(--primary-950);
+  --popover: var(--primary-100);
+  --popover-foreground: var(--primary-950);
+  
+  /* Primary */
+  --primary: var(--primary-500);
+  --primary-foreground: var(--primary-950);
+  
+  /* Secondary */
+  --secondary: var(--secondary-500);
+  --secondary-foreground: var(--secondary-950);
+  
+  /* Muted */
+  --muted: var(--accent-200);
+  --muted-foreground: var(--accent-700);
+  
+  /* Accent */
+  --accent: var(--secondary-200);
+  --accent-foreground: var(--secondary-800);
+  
+  /* Destructive */
+  --destructive: oklch(0.704 0.191 22.216);
+  
+  /* Borders & Inputs */
+  --border: var(--primary-200);
+  --input: var(--primary-200);
+  --ring: var(--secondary-500);
+  
+  /* Charts */
+  --chart-1: var(--primary-500);
+  --chart-2: var(--secondary-500);
+  --chart-3: var(--accent-500);
+  --chart-4: oklch(0.80 0.07 80);
+  --chart-5: oklch(0.72 0.09 320);
+  
+  /* Sidebar */
+  --sidebar: var(--primary-100);
+  --sidebar-foreground: var(--primary-950);
+  --sidebar-primary: var(--primary-600);
+  --sidebar-primary-foreground: var(--primary-950);
+  --sidebar-accent: var(--primary-200);
+  --sidebar-accent-foreground: var(--primary-900);
+  --sidebar-border: var(--primary-200);
+  --sidebar-ring: var(--secondary-500);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  body {
+    @apply bg-background text-foreground;
+  }
 }

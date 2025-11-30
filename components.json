@@ -1,0 +1,63 @@
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "new-york",
+  "rsc": true,
+  "tsx": true,
+  "tailwind": {
+    "config": "",
+    "css": "app/globals.css",
+    "baseColor": "zinc",
+    "cssVariables": true,
+    "prefix": ""
+  },
+  "iconLibrary": "lucide",
+  "aliases": {
+    "components": "@/components",
+    "utils": "@/lib/utils",
+    "ui": "@/components/ui",
+    "lib": "@/lib",
+    "hooks": "@/hooks"
+  },
+  "registries": {
+    "@smoothui": "https://smoothui.dev/r/{name}.json",
+    "@aceternity": "https://ui.aceternity.com/registry/{name}.json",
+    "@reui": "https://reui.io/r/{name}.json",
+    "@animate-ui": "https://animate-ui.com/r/{name}.json",
+    "@cult-ui": "https://cult-ui.com/r/{name}.json",
+    "@kokonutui": "https://kokonutui.com/r/{name}.json",
+    "@magicui": "https://magicui.design/r/{name}",
+    "@ss-components": {
+      "url": "https://shadcnstudio.com/r/components/{name}.json",
+      "params": {
+        "email": "${EMAIL}",
+        "license_key": "${LICENSE_KEY}"
+      }
+    },
+    "@ss-blocks": {
+      "url": "https://shadcnstudio.com/r/blocks/{name}.json",
+      "params": {
+        "email": "${EMAIL}",
+        "license_key": "${LICENSE_KEY}"
+      }
+    },
+    "@cult-ui-pro": {
+      "url": "https://pro.cult-ui.com/api/registry/{name}",
+      "headers": {
+        "X-API-Key": "cult_pNn3V1MH68lXN16yGCWgHCxNQNZ60kUh"
+      }
+    },
+    "@kokonutui-pro": {
+      "url": "https://kokonutui.pro/api/r/{name}",
+      "headers": {
+        "X-API-Key": "a848911d-a884-4fe3-8578-5b49869fdda3"
+      }
+    },
+    "@magicui-pro": {
+      "url": "https://pro.magicui.design/registry/{name}",
+      "headers": {
+        "Authorization": "Bearer ${MAGICUI_PRO_REGISTRY_TOKEN}"
+      }
+    },
+    "@assistant-ui": "https://r.assistant-ui.com/{name}.json"
+  }
+}
