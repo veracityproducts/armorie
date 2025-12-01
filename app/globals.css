@@ -99,7 +99,7 @@
      Anchor 500: oklch(0.772 0.019 192.76) — our soft teal
      Compressed range for better color visibility
      ========================================================== */
-  --primary-50:  oklch(0.98 0.008 192);
+  --primary-50:  oklch(0.98 0.006 192);
   --primary-100: oklch(0.94 0.012 192);
   --primary-200: oklch(0.90 0.016 192);
   --primary-300: oklch(0.86 0.018 192);
@@ -116,8 +116,8 @@
      Anchor 500: oklch(0.72 0.045 359.76) — our warm rose
      Compressed range: starts at 0.94 for visible color
      ========================================================== */
-  --secondary-50:  oklch(0.97 0.018 359);
-  --secondary-100: oklch(0.90 0.035 359);
+  --secondary-50:  oklch(0.98 0.018 359);
+  --secondary-100: oklch(0.93 0.035 359);
   --secondary-200: oklch(0.86 0.048 359);
   --secondary-300: oklch(0.82 0.052 359);
   --secondary-400: oklch(0.77 0.050 359);
@@ -133,8 +133,8 @@
      Anchor 500: oklch(0.52 0.045 245.52) — our slate blue
      Compressed range: starts at 0.94 for visible color
      ========================================================== */
-  --accent-50:  oklch(0.97 0.015 245);
-  --accent-100: oklch(0.90 0.028 245);
+  --accent-50:  oklch(0.98 0.015 245);
+  --accent-100: oklch(0.93 0.028 245);
   --accent-200: oklch(0.84 0.038 245);
   --accent-300: oklch(0.76 0.045 245);
   --accent-400: oklch(0.64 0.048 245);
@@ -166,12 +166,12 @@
   --secondary-foreground: var(--secondary-950);
   
   /* Muted (light accent backgrounds) */
-  --muted: var(--accent-100);
-  --muted-foreground: var(--accent-700);
+  --muted: var(--accent-200);
+  --muted-foreground: var(--accent-800);
   
   /* Accent (rose for focus/highlights) */
-  --accent: var(--secondary-100);
-  --accent-foreground: var(--secondary-700);
+  --accent: var(--accent-100);
+  --accent-foreground: var(--accent-700);
   
   /* Destructive */
   --destructive: oklch(0.577 0.245 27.325);
@@ -189,7 +189,7 @@
   --chart-5: oklch(0.68 0.08 320);
   
   /* Sidebar */
-  --sidebar: var(--primary-100);
+  --sidebar: var(--primary-300);
   --sidebar-foreground: var(--primary-950);
   --sidebar-primary: var(--primary-600);
   --sidebar-primary-foreground: oklch(1 0 0);

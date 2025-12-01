@@ -18,14 +18,29 @@ export type ThreadProps = {
 export const Thread: FC<ThreadProps> = ({ welcome, composer }) => {
   return (
     <ThreadPrimitive.Root
-      className="aui-root aui-thread-root @container flex h-full flex-col bg-background"
+      className="aui-root aui-thread-root @container flex h-full flex-col bg-background relative"
       style={{
         ["--thread-max-width" as string]: "44rem",
       }}
     >
+      {/* Subtle accent glow */}
+      <div
+        className="absolute inset-0 z-0"
+        style={{
+          backgroundImage: `
+            radial-gradient(
+              circle at top right,
+              oklch(0.84 0.038 245 / 0.25),
+              transparent 70%
+            )
+          `,
+          filter: "blur(80px)",
+          backgroundRepeat: "no-repeat",
+        }}
+      />
       <ThreadPrimitive.Viewport
         turnAnchor="top"
-        className="aui-thread-viewport relative flex flex-1 flex-col overflow-x-auto overflow-y-scroll scroll-smooth px-4 pt-4"
+        className="aui-thread-viewport relative flex flex-1 flex-col overflow-x-auto overflow-y-scroll scroll-smooth px-4 pt-4 z-10"
       >
         <ThreadPrimitive.If empty>
           <ThreadWelcome {...welcome} />

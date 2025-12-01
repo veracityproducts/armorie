@@ -5,6 +5,7 @@ import {
   AssistantChatTransport,
   useChatRuntime,
 } from "@assistant-ui/react-ai-sdk";
+import { lastAssistantMessageIsCompleteWithToolCalls } from "ai";
 import { MessagesSquare } from "lucide-react";
 import { Thread } from "@/components/assistant-ui/thread";
 import {
@@ -12,16 +13,19 @@ import {
   SidebarHeaderItem,
 } from "@/components/assistant-ui/threadlist-sidebar";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { VerseAnalysisToolUI } from "@/components/assistant-ui/verse-mapping-tool-ui";
 
 export const Assistant = () => {
   const runtime = useChatRuntime({
     transport: new AssistantChatTransport({
       api: "/api/chat",
     }),
+    sendAutomaticallyWhen: lastAssistantMessageIsCompleteWithToolCalls,
   });
 
   return (
     <AssistantRuntimeProvider runtime={runtime}>
+      <VerseAnalysisToolUI />
       <SidebarProvider>
         <ThreadListSidebar
           header={

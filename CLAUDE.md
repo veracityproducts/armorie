@@ -19,6 +19,7 @@ Bible verse mapping chat application — peaceful, calming, contemplative experi
 - Prefer composition over prop drilling
 - Handle errors gracefully with proper error boundaries
 - Use async/await, not callbacks or raw promises
+- Limit MCP tokens responses to 4000 tokens
 
 ### Never
 - Don't install packages without asking
