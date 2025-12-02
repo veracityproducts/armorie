@@ -146,48 +146,48 @@
   --accent-950: oklch(0.14 0.022 245);
 
   /* ========== SEMANTIC MAPPINGS ========== */
-  
+
   /* Backgrounds */
   --background: var(--primary-50);
   --foreground: var(--primary-950);
-  
+
   /* Cards & Popovers */
   --card: oklch(1 0 0);
   --card-foreground: var(--primary-950);
   --popover: oklch(1 0 0);
   --popover-foreground: var(--primary-950);
-  
+
   /* Primary (teal - default actions) */
   --primary: var(--primary-500);
   --primary-foreground: var(--primary-950);
-  
+
   /* Secondary (rose - warm emphasis) */
   --secondary: var(--secondary-500);
   --secondary-foreground: var(--secondary-950);
-  
+
   /* Muted (light accent backgrounds) */
   --muted: var(--accent-200);
   --muted-foreground: var(--accent-800);
-  
+
   /* Accent (rose for focus/highlights) */
   --accent: var(--accent-100);
   --accent-foreground: var(--accent-700);
-  
+
   /* Destructive */
   --destructive: oklch(0.577 0.245 27.325);
-  
+
   /* Borders & Inputs */
   --border: var(--primary-200);
   --input: var(--primary-200);
   --ring: var(--secondary-500);
-  
+
   /* Charts */
   --chart-1: var(--primary-500);
   --chart-2: var(--secondary-500);
   --chart-3: var(--accent-500);
   --chart-4: oklch(0.78 0.06 80);
   --chart-5: oklch(0.68 0.08 320);
-  
+
   /* Sidebar */
   --sidebar: var(--primary-300);
   --sidebar-foreground: var(--primary-950);
@@ -249,48 +249,48 @@
   --accent-950: oklch(0.97 0.008 245);
 
   /* ========== SEMANTIC MAPPINGS (Dark) ========== */
-  
+
   /* Backgrounds */
   --background: var(--primary-50);
   --foreground: var(--primary-950);
-  
+
   /* Cards & Popovers */
   --card: var(--primary-100);
   --card-foreground: var(--primary-950);
   --popover: var(--primary-100);
   --popover-foreground: var(--primary-950);
-  
+
   /* Primary */
   --primary: var(--primary-500);
   --primary-foreground: var(--primary-950);
-  
+
   /* Secondary */
   --secondary: var(--secondary-500);
   --secondary-foreground: var(--secondary-950);
-  
+
   /* Muted */
   --muted: var(--accent-200);
   --muted-foreground: var(--accent-700);
-  
+
   /* Accent */
   --accent: var(--secondary-200);
   --accent-foreground: var(--secondary-800);
-  
+
   /* Destructive */
   --destructive: oklch(0.704 0.191 22.216);
-  
+
   /* Borders & Inputs */
   --border: var(--primary-200);
   --input: var(--primary-200);
   --ring: var(--secondary-500);
-  
+
   /* Charts */
   --chart-1: var(--primary-500);
   --chart-2: var(--secondary-500);
   --chart-3: var(--accent-500);
   --chart-4: oklch(0.80 0.07 80);
   --chart-5: oklch(0.72 0.09 320);
-  
+
   /* Sidebar */
   --sidebar: var(--primary-100);
   --sidebar-foreground: var(--primary-950);

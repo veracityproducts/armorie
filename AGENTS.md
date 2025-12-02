@@ -1,4 +1,4 @@
-# Armorie — Agent Guidelines
+# Armorie — Agent Guidelines - December 2025
 
 Armorie is a Bible verse mapping chat application built with Next.js 16, AI SDK v6, and assistant-ui. The experience should feel peaceful, calming, and contemplative.
 

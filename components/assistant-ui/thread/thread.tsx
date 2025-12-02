@@ -6,6 +6,7 @@ import { UserMessage } from "./user-message";
 import { AssistantMessage } from "./assistant-message";
 import {
   Composer,
+  HeroComposer,
   type ComposerProps,
 } from "@/components/assistant-ui/composer";
 import { EditComposer } from "@/components/assistant-ui/composer";
@@ -42,22 +43,31 @@ export const Thread: FC<ThreadProps> = ({ welcome, composer }) => {
         turnAnchor="top"
         className="aui-thread-viewport relative flex flex-1 flex-col overflow-x-auto overflow-y-scroll scroll-smooth px-4 pt-4 z-10"
       >
+        {/* Empty state with centered hero composer */}
         <ThreadPrimitive.If empty>
-          <ThreadWelcome {...welcome} />
+          <div className="flex-1 flex flex-col items-center justify-center pb-8">
+            <ThreadWelcome {...welcome} />
+            <div className="w-full mt-8 px-4">
+              <HeroComposer />
+            </div>
+          </div>
         </ThreadPrimitive.If>
 
-        <ThreadPrimitive.Messages
-          components={{
-            UserMessage,
-            EditComposer,
-            AssistantMessage,
-          }}
-        />
+        {/* Messages state */}
+        <ThreadPrimitive.If empty={false}>
+          <ThreadPrimitive.Messages
+            components={{
+              UserMessage,
+              EditComposer,
+              AssistantMessage,
+            }}
+          />
 
-        <ThreadPrimitive.ViewportFooter className="aui-thread-viewport-footer sticky bottom-0 mx-auto mt-4 flex w-full max-w-(--thread-max-width) flex-col gap-4 overflow-visible rounded-t-3xl bg-background pb-4 md:pb-6">
-          <ThreadScrollToBottom />
-          <Composer {...composer} />
-        </ThreadPrimitive.ViewportFooter>
+          <ThreadPrimitive.ViewportFooter className="aui-thread-viewport-footer sticky bottom-0 mx-auto mt-4 flex w-full max-w-(--thread-max-width) flex-col gap-4 overflow-visible rounded-t-3xl bg-background pb-4 md:pb-6">
+            <ThreadScrollToBottom />
+            <Composer {...composer} />
+          </ThreadPrimitive.ViewportFooter>
+        </ThreadPrimitive.If>
       </ThreadPrimitive.Viewport>
     </ThreadPrimitive.Root>
   );

@@ -1,4 +1,4 @@
-# Armorie
+# Armorie - December 2025
 
 Bible verse mapping chat application — peaceful, calming, contemplative experience.
 

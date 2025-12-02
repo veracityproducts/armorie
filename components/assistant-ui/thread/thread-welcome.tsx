@@ -1,55 +1,45 @@
-import type { FC } from "react";
-import { ThreadSuggestions, type SuggestionItem } from "./thread-suggestions";
+"use client";
 
-export type { SuggestionItem };
+import type { FC } from "react";
+import { motion } from "motion/react";
+import { Typewriter } from "motion-plus/react";
 
 export type ThreadWelcomeProps = {
   heading?: string;
   subheading?: string;
-  suggestions?: SuggestionItem[];
 };
 
-const defaultSuggestions: SuggestionItem[] = [
-  {
-    title: "What's the weather",
-    label: "in San Francisco?",
-    action: "What's the weather in San Francisco?",
-  },
-  {
-    title: "Explain React hooks",
-    label: "like useState and useEffect",
-    action: "Explain React hooks like useState and useEffect",
-  },
-  {
-    title: "Write a SQL query",
-    label: "to find top customers",
-    action: "Write a SQL query to find top customers",
-  },
-  {
-    title: "Create a meal plan",
-    label: "for healthy weight loss",
-    action: "Create a meal plan for healthy weight loss",
-  },
-];
-
 export const ThreadWelcome: FC<ThreadWelcomeProps> = ({
-  heading = "Hello there!",
-  subheading = "How can I help you today?",
-  suggestions = defaultSuggestions,
+  heading = "Find your verse",
+  subheading = "Search Scripture by topic, feeling, or reference",
 }) => {
   return (
-    <div className="aui-thread-welcome-root mx-auto my-auto flex w-full max-w-(--thread-max-width) grow flex-col">
-      <div className="aui-thread-welcome-center flex w-full grow flex-col items-center justify-center">
-        <div className="aui-thread-welcome-message flex size-full flex-col justify-center px-8">
-          <div className="aui-thread-welcome-message-inner fade-in slide-in-from-bottom-2 animate-in font-semibold text-2xl duration-300 ease-out">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.6 }}
+      className="aui-thread-welcome-root mx-auto flex w-full max-w-2xl flex-col items-center text-center"
+    >
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+        className="aui-thread-welcome-message flex flex-col items-center gap-3"
+      >
+        <h1 className="aui-thread-welcome-heading font-semibold text-3xl md:text-4xl text-foreground tracking-tight">
+          <Typewriter speed="fast" cursorClassName="bg-secondary-500">
             {heading}
-          </div>
-          <div className="aui-thread-welcome-message-inner fade-in slide-in-from-bottom-2 animate-in text-2xl text-muted-foreground/65 delay-100 duration-300 ease-out">
-            {subheading}
-          </div>
-        </div>
-      </div>
-      <ThreadSuggestions suggestions={suggestions} />
-    </div>
+          </Typewriter>
+        </h1>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.8, duration: 0.5 }}
+          className="aui-thread-welcome-subheading text-lg text-muted-foreground/80"
+        >
+          {subheading}
+        </motion.p>
+      </motion.div>
+    </motion.div>
   );
 };

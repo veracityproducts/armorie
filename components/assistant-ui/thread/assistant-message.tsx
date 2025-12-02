@@ -2,6 +2,7 @@ import type { FC } from "react";
 import { MessagePrimitive } from "@assistant-ui/react";
 import { MarkdownText } from "@/components/assistant-ui/markdown-text";
 import { ToolFallback } from "@/components/assistant-ui/tool-fallback";
+import { Reasoning, ReasoningGroup } from "@/components/assistant-ui/reasoning";
 import { BranchPicker } from "./branch-picker";
 import { AssistantActionBar } from "./assistant-action-bar";
 import { MessageError } from "./message-error";
@@ -16,6 +17,8 @@ export const AssistantMessage: FC = () => {
         <MessagePrimitive.Parts
           components={{
             Text: MarkdownText,
+            Reasoning: Reasoning,
+            ReasoningGroup: ReasoningGroup,
             tools: { Fallback: ToolFallback },
           }}
         />
