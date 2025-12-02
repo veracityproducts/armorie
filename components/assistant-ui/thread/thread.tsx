@@ -1,5 +1,6 @@
 import type { FC } from "react";
 import { ThreadPrimitive } from "@assistant-ui/react";
+import Image from "next/image";
 import { ThreadWelcome, type ThreadWelcomeProps } from "./thread-welcome";
 import { ThreadScrollToBottom } from "./thread-scroll-to-bottom";
 import { UserMessage } from "./user-message";
@@ -45,7 +46,20 @@ export const Thread: FC<ThreadProps> = ({ welcome, composer }) => {
       >
         {/* Empty state with centered hero composer */}
         <ThreadPrimitive.If empty>
-          <div className="flex-1 flex flex-col items-center justify-center pb-8">
+          {/* Subtle background image - misty landscape */}
+          <div className="absolute inset-0 z-0 overflow-hidden">
+            <Image
+              src="/background.webp"
+              alt=""
+              fill
+              priority
+              className="object-cover object-center opacity-50"
+              sizes="100vw"
+            />
+            {/* Gradient overlay - fade bottom for UI clarity */}
+            <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent" />
+          </div>
+          <div className="flex-1 flex flex-col items-center justify-center pb-8 relative z-10">
             <ThreadWelcome {...welcome} />
             <div className="w-full mt-8 px-4">
               <HeroComposer />

@@ -1,8 +1,8 @@
 export function LeafShieldIcon({ className }: { className?: string }) {
   return (
     <svg
-      width="36"
-      height="36"
+      width="28"
+      height="28"
       viewBox="0 0 15 16"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

@@ -474,9 +474,9 @@ export const HeroComposer: FC<HeroComposerProps> = ({
           {/* Primary Quick Actions */}
           <div className="flex flex-wrap justify-center gap-2">
             {[
-              { topic: "comfort", icon: Heart, color: "secondary" },
+              { topic: "comfort", icon: Heart, color: "primary" },
               { topic: "peace", icon: Sparkles, color: "primary" },
-              { topic: "strength", icon: Shield, color: "accent" },
+              { topic: "strength", icon: Shield, color: "primary" },
               { topic: "wisdom", icon: Lightbulb, color: "primary" },
             ].map(({ topic, icon: Icon, color }, index) => (
               <ThreadPrimitive.Suggestion key={topic} prompt={topic} send asChild>
@@ -487,10 +487,10 @@ export const HeroComposer: FC<HeroComposerProps> = ({
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.97 }}
                   className={`flex items-center gap-1.5 px-4 py-2 text-sm font-medium rounded-full transition-all duration-200 shadow-sm hover:shadow-md ${
-                    color === "secondary"
-                      ? "text-secondary-700 bg-secondary-100/80 hover:bg-secondary-100"
+                    color === "primary"
+                      ? "text-primary-700 bg-primary-100/80 hover:bg-primary-100"
                       : color === "accent"
-                      ? "text-accent-700 bg-accent-100/80 hover:bg-accent-100"
+                      ? "text-primary-700 bg-primary-100/80 hover:bg-primary-100"
                       : "text-primary-700 bg-primary-100/80 hover:bg-primary-100"
                   }`}
                 >

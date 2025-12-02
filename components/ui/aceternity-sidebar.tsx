@@ -88,11 +88,11 @@ export const AceternityDesktopSidebar = ({
     <>
       <motion.div
         className={cn(
-          "h-full px-4 py-4 hidden  md:flex md:flex-col bg-neutral-100 dark:bg-neutral-800 w-[240px] shrink-0",
+          "h-full px-3 py-4 hidden  md:flex md:flex-col bg-neutral-100 dark:bg-neutral-800 w-[200px] shrink-0",
           className
         )}
         animate={{
-          width: animate ? (open ? "240px" : "80px") : "240px",
+          width: animate ? (open ? "200px" : "56px") : "200px",
         }}
         onMouseEnter={() => setOpen(true)}
         onMouseLeave={() => setOpen(false)}

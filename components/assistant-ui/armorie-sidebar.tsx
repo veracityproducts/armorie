@@ -20,42 +20,42 @@ const links = [
     label: "Conversations",
     href: "#",
     icon: (
-      <MessageSquare className="text-primary-700 dark:text-primary-300 h-9 w-9 shrink-0" />
+      <MessageSquare className="text-primary-700 dark:text-primary-300 h-7 w-7 shrink-0" />
     ),
   },
   {
     label: "Saved Verses",
     href: "#",
     icon: (
-      <Star className="text-secondary-600 dark:text-secondary-400 h-9 w-9 shrink-0" />
+      <Star className="text-secondary-600 dark:text-secondary-400 h-7 w-7 shrink-0" />
     ),
   },
   {
     label: "Study Guides",
     href: "#",
     icon: (
-      <Book className="text-accent-600 dark:text-accent-400 h-9 w-9 shrink-0" />
+      <Book className="text-accent-600 dark:text-accent-400 h-7 w-7 shrink-0" />
     ),
   },
   {
     label: "Verse Mapping",
     href: "#",
     icon: (
-      <MapIcon className="text-primary-600 dark:text-primary-400 h-9 w-9 shrink-0" />
+      <MapIcon className="text-primary-600 dark:text-primary-400 h-7 w-7 shrink-0" />
     ),
   },
   {
     label: "Search Scripture",
     href: "#",
     icon: (
-      <Search className="text-accent-700 dark:text-accent-300 h-9 w-9 shrink-0" />
+      <Search className="text-accent-700 dark:text-accent-300 h-7 w-7 shrink-0" />
     ),
   },
   {
     label: "Reading Plans",
     href: "#",
     icon: (
-      <BookOpen className="text-secondary-700 dark:text-secondary-300 h-9 w-9 shrink-0" />
+      <BookOpen className="text-secondary-700 dark:text-secondary-300 h-7 w-7 shrink-0" />
     ),
   },
 ];
@@ -87,7 +87,7 @@ export function ArmorieSidebar() {
               label: "Profile",
               href: "#",
               icon: (
-                <div className="h-9 w-9 bg-secondary-200 dark:bg-secondary-300 rounded-full shrink-0 flex items-center justify-center text-secondary-800 text-sm font-medium">
+                <div className="h-7 w-7 bg-secondary-200 dark:bg-secondary-300 rounded-full shrink-0 flex items-center justify-center text-secondary-800 text-xs font-medium">
                   JC
                 </div>
               ),
