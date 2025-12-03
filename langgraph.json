@@ -1,0 +1,8 @@
+{
+  "graphs": {
+    "verse-study": "./lib/langgraph/graph.ts:verseStudyGraph"
+  },
+  "node_version": "20",
+  "env": ".env.local",
+  "dependencies": ["."]
+}

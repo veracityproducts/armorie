@@ -13,7 +13,8 @@ Bible verse mapping chat application — peaceful, calming, contemplative experi
 
 ## Code Standards
 
-### Always
+### Alwaysk
+- Limit MCP tokens responses to 4000 tokens per call
 - Write TypeScript with strict types — avoid `any`
 - Use server components by default, `"use client"` only when needed
 - Prefer composition over prop drilling
