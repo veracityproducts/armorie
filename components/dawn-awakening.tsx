@@ -11,7 +11,7 @@ interface DawnAwakeningProps {
 
 export function DawnAwakening({ children }: DawnAwakeningProps) {
   const [isAwakening, setIsAwakening] = useState(false);
-  const [showContent, setShowContent] = useState(false);
+  const [showContent, setShowContent] = useState(true);
 
   useEffect(() => {
     // Check if this is a fresh login (sessionStorage clears on browser close)
@@ -20,6 +20,7 @@ export function DawnAwakening({ children }: DawnAwakeningProps) {
     if (!hasAwakened) {
       // First visit this session - play the awakening animation
       setIsAwakening(true);
+      setShowContent(false);
       sessionStorage.setItem("armorie_awakened", "true");
 
       // After animation completes, show content
@@ -29,10 +30,8 @@ export function DawnAwakening({ children }: DawnAwakeningProps) {
       }, 3000); // 3 second dawn animation
 
       return () => clearTimeout(timer);
-    } else {
-      // Already awakened this session - show content immediately
-      setShowContent(true);
     }
+    // If already awakened, showContent is already true from initial state
   }, []);
 
   return (
@@ -96,7 +95,7 @@ export function DawnAwakening({ children }: DawnAwakeningProps) {
 
             {/* Gradient overlay fading out */}
             <motion.div
-              className="absolute inset-0 bg-gradient-to-b from-primary-950/60 via-transparent to-primary-950/40"
+              className="absolute inset-0 bg-gradient-to-b from-primary-950/30 via-transparent to-primary-950/20"
               initial={{ opacity: 1 }}
               animate={{ opacity: 0 }}
               transition={{ duration: 2.5, ease: "easeOut" }}
@@ -125,15 +124,17 @@ export function DawnAwakening({ children }: DawnAwakeningProps) {
         )}
       </AnimatePresence>
 
-      {/* Main content */}
-      <motion.div
-        className="h-full"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: showContent ? 1 : 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        {children}
-      </motion.div>
+      {/* Main content - always rendered, visibility controlled by showContent */}
+      {showContent && (
+        <motion.div
+          className="h-full"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          {children}
+        </motion.div>
+      )}
     </div>
   );
 }

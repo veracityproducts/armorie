@@ -14,7 +14,6 @@ export function SignupForm() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
   const router = useRouter();
   const supabase = createClient();
 
@@ -37,9 +36,6 @@ export function SignupForm() {
     const { error } = await supabase.auth.signUp({
       email,
       password,
-      options: {
-        emailRedirectTo: `${window.location.origin}/auth/callback`,
-      },
     });
 
     if (error) {
@@ -48,43 +44,9 @@ export function SignupForm() {
       return;
     }
 
-    setSuccess(true);
-    setLoading(false);
+    // Redirect to home page after successful signup
+    router.push("/");
   };
-
-  if (success) {
-    return (
-      <div className="bg-card rounded-lg border border-border p-6 shadow-sm">
-        <div className="text-center space-y-4">
-          <div className="w-12 h-12 mx-auto bg-green-100 rounded-full flex items-center justify-center">
-            <svg
-              className="w-6 h-6 text-green-600"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M5 13l4 4L19 7"
-              />
-            </svg>
-          </div>
-          <h2 className="text-lg font-semibold text-foreground">
-            Check your email
-          </h2>
-          <p className="text-muted-foreground text-sm">
-            We&apos;ve sent a confirmation link to{" "}
-            <span className="font-medium text-foreground">{email}</span>
-          </p>
-          <p className="text-muted-foreground text-sm">
-            Click the link in the email to activate your account.
-          </p>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="bg-card rounded-lg border border-border p-6 shadow-sm">

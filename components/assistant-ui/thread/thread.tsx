@@ -53,11 +53,11 @@ export const Thread: FC<ThreadProps> = ({ welcome, composer }) => {
               alt=""
               fill
               priority
-              className="object-cover object-center opacity-50"
+              className="object-cover object-center opacity-80"
               sizes="100vw"
             />
             {/* Gradient overlay - fade bottom for UI clarity */}
-            <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
           </div>
           <div className="flex-1 flex flex-col items-center justify-center pb-8 relative z-10">
             <ThreadWelcome {...welcome} />
