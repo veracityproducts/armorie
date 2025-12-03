@@ -30,8 +30,11 @@ export function DawnAwakening({ children }: DawnAwakeningProps) {
       }, 3000); // 3 second dawn animation
 
       return () => clearTimeout(timer);
+    } else {
+      // Ensure content is shown if already awakened
+      setShowContent(true);
+      setIsAwakening(false);
     }
-    // If already awakened, showContent is already true from initial state
   }, []);
 
   return (
@@ -116,7 +119,7 @@ export function DawnAwakening({ children }: DawnAwakeningProps) {
                   animate={{ opacity: [0, 1, 1, 0] }}
                   transition={{ duration: 3, times: [0, 0.2, 0.7, 1] }}
                 >
-                  A new day begins
+                  His mercies are new every morning
                 </motion.h1>
               </div>
             </motion.div>

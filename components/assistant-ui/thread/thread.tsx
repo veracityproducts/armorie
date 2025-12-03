@@ -11,6 +11,8 @@ import {
   type ComposerProps,
 } from "@/components/assistant-ui/composer";
 import { EditComposer } from "@/components/assistant-ui/composer";
+import { InterruptHandler } from "@/components/assistant-ui/interrupts";
+import { ThinkingIndicator } from "@/components/assistant-ui/thinking-indicator";
 
 export type ThreadProps = {
   welcome?: ThreadWelcomeProps;
@@ -22,12 +24,12 @@ export const Thread: FC<ThreadProps> = ({ welcome, composer }) => {
     <ThreadPrimitive.Root
       className="aui-root aui-thread-root @container flex h-full flex-col bg-background relative"
       style={{
-        ["--thread-max-width" as string]: "44rem",
+        ["--thread-max-width" as string]: "52rem",
       }}
     >
       {/* Subtle accent glow */}
       <div
-        className="absolute inset-0 z-0"
+        className="pointer-events-none absolute inset-0 z-0"
         style={{
           backgroundImage: `
             radial-gradient(
@@ -40,35 +42,33 @@ export const Thread: FC<ThreadProps> = ({ welcome, composer }) => {
           backgroundRepeat: "no-repeat",
         }}
       />
-      <ThreadPrimitive.Viewport
-        turnAnchor="top"
-        className="aui-thread-viewport relative flex flex-1 flex-col overflow-x-auto overflow-y-scroll scroll-smooth px-4 pt-4 z-10"
-      >
-        {/* Empty state with centered hero composer */}
-        <ThreadPrimitive.If empty>
-          {/* Subtle background image - misty landscape */}
-          <div className="absolute inset-0 z-0 overflow-hidden">
-            <Image
-              src="/background.webp"
-              alt=""
-              fill
-              priority
-              className="object-cover object-center opacity-80"
-              sizes="100vw"
-            />
-            {/* Gradient overlay - fade bottom for UI clarity */}
-            <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
-          </div>
-          <div className="flex-1 flex flex-col items-center justify-center pb-8 relative z-10">
-            <ThreadWelcome {...welcome} />
-            <div className="w-full mt-8 px-4">
-              <HeroComposer />
-            </div>
-          </div>
-        </ThreadPrimitive.If>
 
-        {/* Messages state */}
-        <ThreadPrimitive.If empty={false}>
+      {/* Empty state with centered hero composer */}
+      <ThreadPrimitive.If empty>
+        {/* Subtle background image - misty landscape */}
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <Image
+            src="/background.webp"
+            alt=""
+            fill
+            priority
+            className="object-cover object-center opacity-80"
+            sizes="100vw"
+          />
+          {/* Gradient overlay - fade bottom for UI clarity */}
+          <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
+        </div>
+        <div className="flex-1 flex flex-col items-center justify-center pb-8 px-4 relative z-10">
+          <ThreadWelcome {...welcome} />
+          <div className="w-full max-w-(--thread-max-width) mt-8">
+            <HeroComposer />
+          </div>
+        </div>
+      </ThreadPrimitive.If>
+
+      {/* Messages state - scrollable viewport */}
+      <ThreadPrimitive.If empty={false}>
+        <ThreadPrimitive.Viewport className="aui-thread-viewport flex-1 overflow-y-auto scroll-smooth px-4 pt-4 z-10">
           <ThreadPrimitive.Messages
             components={{
               UserMessage,
@@ -77,12 +77,25 @@ export const Thread: FC<ThreadProps> = ({ welcome, composer }) => {
             }}
           />
 
-          <ThreadPrimitive.ViewportFooter className="aui-thread-viewport-footer sticky bottom-0 mx-auto mt-4 flex w-full max-w-(--thread-max-width) flex-col gap-4 overflow-visible rounded-t-3xl bg-background pb-4 md:pb-6">
-            <ThreadScrollToBottom />
-            <Composer {...composer} />
-          </ThreadPrimitive.ViewportFooter>
-        </ThreadPrimitive.If>
-      </ThreadPrimitive.Viewport>
+          {/* Interrupt UI - appears directly after messages */}
+          <div className="mx-auto w-full max-w-(--thread-max-width) py-2">
+            <InterruptHandler />
+          </div>
+
+          {/* Thinking indicator - shows when AI is processing, below artifacts */}
+          <ThreadPrimitive.If running>
+            <div className="mx-auto w-full max-w-(--thread-max-width) py-4">
+              <ThinkingIndicator message="Thinking..." variant="dots" />
+            </div>
+          </ThreadPrimitive.If>
+        </ThreadPrimitive.Viewport>
+
+        {/* Fixed composer at bottom */}
+        <div className="shrink-0 mx-auto w-full max-w-(--thread-max-width) px-4 pb-4 pt-2 bg-background">
+          <ThreadScrollToBottom />
+          <Composer {...composer} />
+        </div>
+      </ThreadPrimitive.If>
     </ThreadPrimitive.Root>
   );
 };

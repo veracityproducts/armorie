@@ -4,7 +4,7 @@ import { useState } from "react";
 import { BookOpen, Clock, Users, MapPin, Edit2, Check, X } from "lucide-react";
 import { motion } from "motion/react";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import { ThemedCard } from "@/components/ui/themed-card";
 
 interface KeywordStudy {
   keyword: string;
@@ -28,66 +28,6 @@ interface HistoricalContextInterruptProps {
   studies: KeywordStudy[];
   historicalContext: HistoricalContext;
   onContinue: (editedContext?: HistoricalContext) => void;
-}
-
-function ThemedCard({
-  children,
-  variant = "primary",
-  className,
-}: {
-  children: React.ReactNode;
-  variant?: "primary" | "secondary" | "accent";
-  className?: string;
-}) {
-  const variantStyles = {
-    primary: {
-      outer: "bg-primary-200 ring-primary-300",
-      middle: "bg-primary-100",
-      inner: "bg-white ring-primary-200",
-    },
-    secondary: {
-      outer: "bg-secondary-200 ring-secondary-300",
-      middle: "bg-secondary-100",
-      inner: "bg-white ring-secondary-200",
-    },
-    accent: {
-      outer: "bg-accent-200 ring-accent-300",
-      middle: "bg-accent-100",
-      inner: "bg-white ring-accent-200",
-    },
-  };
-
-  const styles = variantStyles[variant];
-
-  return (
-    <div
-      className={cn(
-        "grid grid-cols-1 rounded-2xl",
-        "shadow-[inset_0_0_2px_1px_rgba(0,0,0,0.05)]",
-        "ring-1",
-        styles.outer,
-        "transition-all duration-300 ease-in-out",
-        className
-      )}
-    >
-      <div
-        className={cn(
-          "grid grid-cols-1 rounded-2xl p-1.5 shadow-md",
-          styles.middle
-        )}
-      >
-        <div
-          className={cn(
-            "rounded-xl p-4 shadow-lg ring-1",
-            styles.inner,
-            "h-full"
-          )}
-        >
-          {children}
-        </div>
-      </div>
-    </div>
-  );
 }
 
 function ContextSection({
@@ -128,9 +68,11 @@ export function HistoricalContextInterrupt({
   onContinue,
 }: HistoricalContextInterruptProps) {
   const [isEditing, setIsEditing] = useState(false);
-  const [editedContext, setEditedContext] = useState<HistoricalContext>(historicalContext);
+  const [editedContext, setEditedContext] =
+    useState<HistoricalContext>(historicalContext);
 
-  const hasEdits = JSON.stringify(editedContext) !== JSON.stringify(historicalContext);
+  const hasEdits =
+    JSON.stringify(editedContext) !== JSON.stringify(historicalContext);
 
   const handleSave = () => {
     setIsEditing(false);
@@ -175,6 +117,7 @@ export function HistoricalContextInterrupt({
                   </h3>
                   {!isEditing ? (
                     <button
+                      type="button"
                       onClick={() => setIsEditing(true)}
                       className="p-1.5 rounded-full hover:bg-accent-100 transition-colors"
                       title="Edit"
@@ -213,13 +156,18 @@ export function HistoricalContextInterrupt({
                       type="text"
                       value={editedContext.period}
                       onChange={(e) =>
-                        setEditedContext({ ...editedContext, period: e.target.value })
+                        setEditedContext({
+                          ...editedContext,
+                          period: e.target.value,
+                        })
                       }
                       className="w-full mt-1 p-2 text-sm border border-accent-200 rounded-md"
                     />
                   }
                 >
-                  <p className="text-foreground mt-1">{historicalContext.period}</p>
+                  <p className="text-foreground mt-1">
+                    {historicalContext.period}
+                  </p>
                 </ContextSection>
 
                 {/* Author */}
@@ -233,7 +181,10 @@ export function HistoricalContextInterrupt({
                         type="text"
                         value={editedContext.author}
                         onChange={(e) =>
-                          setEditedContext({ ...editedContext, author: e.target.value })
+                          setEditedContext({
+                            ...editedContext,
+                            author: e.target.value,
+                          })
                         }
                         placeholder="Author"
                         className="w-full p-2 text-sm border border-accent-200 rounded-md"
@@ -242,7 +193,10 @@ export function HistoricalContextInterrupt({
                         type="text"
                         value={editedContext.audience}
                         onChange={(e) =>
-                          setEditedContext({ ...editedContext, audience: e.target.value })
+                          setEditedContext({
+                            ...editedContext,
+                            audience: e.target.value,
+                          })
                         }
                         placeholder="Audience"
                         className="w-full p-2 text-sm border border-accent-200 rounded-md"
@@ -284,7 +238,10 @@ export function HistoricalContextInterrupt({
                 >
                   <ul className="mt-1 space-y-1">
                     {historicalContext.events.map((event, index) => (
-                      <li key={index} className="text-foreground flex items-start gap-2">
+                      <li
+                        key={index}
+                        className="text-foreground flex items-start gap-2"
+                      >
                         <span className="text-accent-500 mt-1">•</span>
                         {event}
                       </li>
@@ -359,7 +316,9 @@ export function HistoricalContextInterrupt({
                   )}
                 </p>
                 <Button
-                  onClick={() => onContinue(hasEdits ? editedContext : undefined)}
+                  onClick={() =>
+                    onContinue(hasEdits ? editedContext : undefined)
+                  }
                   className="bg-secondary-500 text-white hover:bg-secondary-600 px-6"
                 >
                   Continue

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { BookOpen, Sparkles } from "lucide-react";
 import { motion } from "motion/react";
 import { Button } from "@/components/ui/button";
+import { ThemedCard } from "@/components/ui/themed-card";
 import { cn } from "@/lib/utils";
 
 interface KeywordSelectionInterruptProps {
@@ -11,74 +12,6 @@ interface KeywordSelectionInterruptProps {
   reference: string;
   keywords: string[];
   onSubmit: (selectedKeywords: string[]) => void;
-}
-
-function ThemedCard({
-  children,
-  variant = "primary",
-  className,
-  isSelected = false,
-  onClick,
-}: {
-  children: React.ReactNode;
-  variant?: "primary" | "secondary" | "accent";
-  className?: string;
-  isSelected?: boolean;
-  onClick?: () => void;
-}) {
-  const variantStyles = {
-    primary: {
-      outer: "bg-primary-200 ring-primary-300",
-      middle: "bg-primary-100",
-      inner: "bg-white ring-primary-200",
-    },
-    secondary: {
-      outer: isSelected
-        ? "bg-secondary-300 ring-secondary-400"
-        : "bg-secondary-200 ring-secondary-300",
-      middle: isSelected ? "bg-secondary-200" : "bg-secondary-100",
-      inner: "bg-white ring-secondary-200",
-    },
-    accent: {
-      outer: "bg-accent-200 ring-accent-300",
-      middle: "bg-accent-100",
-      inner: "bg-white ring-accent-200",
-    },
-  };
-
-  const styles = variantStyles[variant];
-
-  return (
-    <div
-      onClick={onClick}
-      className={cn(
-        "grid grid-cols-1 rounded-2xl",
-        "shadow-[inset_0_0_2px_1px_rgba(0,0,0,0.05)]",
-        "ring-1",
-        styles.outer,
-        "transition-all duration-300 ease-in-out",
-        onClick && "cursor-pointer hover:scale-[1.02]",
-        className
-      )}
-    >
-      <div
-        className={cn(
-          "grid grid-cols-1 rounded-2xl p-1.5 shadow-md",
-          styles.middle
-        )}
-      >
-        <div
-          className={cn(
-            "rounded-xl p-4 shadow-lg ring-1",
-            styles.inner,
-            "h-full"
-          )}
-        >
-          {children}
-        </div>
-      </div>
-    </div>
-  );
 }
 
 function KeywordChip({
@@ -126,7 +59,7 @@ function KeywordChip({
         <p
           className={cn(
             "text-lg font-bold text-center",
-            isSelected ? "text-secondary-700" : "text-secondary-600"
+            isSelected ? "text-secondary-700" : "text-secondary-600",
           )}
         >
           {keyword}
@@ -164,60 +97,90 @@ export function KeywordSelectionInterrupt({
   };
 
   return (
-    <div className="w-full p-4">
-      <div className="max-w-3xl mx-auto">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
+      className="w-full"
+    >
+      <div className="max-w-[var(--thread-max-width)] mx-auto">
         <div className="flex flex-col gap-4">
           {/* Verse card */}
-          <ThemedCard variant="primary">
-            <div className="flex items-center gap-4 text-left">
-              <BookOpen className="size-8 text-primary-600 shrink-0" />
-              <div>
-                <blockquote className="text-base italic text-foreground leading-relaxed">
-                  "{verse}"
-                </blockquote>
-                <p className="text-sm font-semibold text-primary-600 mt-2">
-                  {reference}
-                </p>
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+          >
+            <ThemedCard variant="primary">
+              <div className="flex items-center gap-4 text-left">
+                <BookOpen className="size-8 text-primary-600 shrink-0" />
+                <div>
+                  <blockquote className="text-base italic text-foreground leading-relaxed">
+                    "{verse}"
+                  </blockquote>
+                  <p className="text-sm font-semibold text-primary-600 mt-2">
+                    {reference}
+                  </p>
+                </div>
               </div>
-            </div>
-          </ThemedCard>
+            </ThemedCard>
+          </motion.div>
 
           {/* Keywords grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-            {keywords.map((keyword) => (
-              <KeywordChip
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="grid grid-cols-2 sm:grid-cols-4 gap-4"
+          >
+            {keywords.map((keyword, index) => (
+              <motion.div
                 key={keyword}
-                keyword={keyword}
-                isSelected={selected.has(keyword)}
-                onClick={() => toggleKeyword(keyword)}
-              />
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.2 + index * 0.05 }}
+              >
+                <KeywordChip
+                  keyword={keyword}
+                  isSelected={selected.has(keyword)}
+                  onClick={() => toggleKeyword(keyword)}
+                />
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
           {/* Action bar */}
-          <ThemedCard variant="accent">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <Sparkles className="size-5 text-accent-600" />
-                <span className="text-sm text-accent-700">
-                  Select keywords to study deeper
-                </span>
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+          >
+            <ThemedCard variant="accent">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <Sparkles className="size-5 text-accent-600" />
+                  <span className="text-sm text-accent-700">
+                    Select keywords to study deeper
+                  </span>
+                </div>
+                <Button
+                  onClick={handleSubmit}
+                  disabled={selected.size === 0}
+                  className={cn(
+                    "bg-secondary-500 text-white hover:bg-secondary-600",
+                    "disabled:opacity-50 disabled:cursor-not-allowed",
+                    "transition-all duration-200",
+                    "px-6",
+                  )}
+                >
+                  Study Selected ({selected.size})
+                </Button>
               </div>
-              <Button
-                onClick={handleSubmit}
-                disabled={selected.size === 0}
-                className={cn(
-                  "bg-secondary-500 text-white hover:bg-secondary-600",
-                  "disabled:opacity-50 disabled:cursor-not-allowed",
-                  "px-6"
-                )}
-              >
-                Study Selected ({selected.size})
-              </Button>
-            </div>
-          </ThemedCard>
+            </ThemedCard>
+          </motion.div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

@@ -99,33 +99,33 @@
      Anchor 500: oklch(0.772 0.019 192.76) — our soft teal
      Compressed range for better color visibility
      ========================================================== */
-  --primary-50:  oklch(0.98 0.006 192);
+  --primary-50: oklch(0.98 0.006 192);
   --primary-100: oklch(0.94 0.012 192);
-  --primary-200: oklch(0.90 0.016 192);
+  --primary-200: oklch(0.9 0.016 192);
   --primary-300: oklch(0.86 0.018 192);
   --primary-400: oklch(0.81 0.019 192);
-  --primary-500: oklch(0.772 0.019 192.76);  /* ⬅ ANCHOR */
+  --primary-500: oklch(0.772 0.019 192.76); /* ⬅ ANCHOR */
   --primary-600: oklch(0.65 0.022 192);
   --primary-700: oklch(0.52 0.028 192);
-  --primary-800: oklch(0.40 0.032 192);
+  --primary-800: oklch(0.4 0.032 192);
   --primary-900: oklch(0.28 0.028 192);
-  --primary-950: oklch(0.18 0.020 192);
+  --primary-950: oklch(0.18 0.02 192);
 
   /* ==========================================================
      SECONDARY SCALE (Rose - Hue 359)
      Anchor 500: oklch(0.72 0.045 359.76) — our warm rose
      Compressed range: starts at 0.94 for visible color
      ========================================================== */
-  --secondary-50:  oklch(0.98 0.018 359);
+  --secondary-50: oklch(0.98 0.018 359);
   --secondary-100: oklch(0.93 0.035 359);
   --secondary-200: oklch(0.86 0.048 359);
   --secondary-300: oklch(0.82 0.052 359);
-  --secondary-400: oklch(0.77 0.050 359);
-  --secondary-500: oklch(0.72 0.045 359.76);  /* ⬅ ANCHOR */
-  --secondary-600: oklch(0.60 0.065 359);
+  --secondary-400: oklch(0.77 0.05 359);
+  --secondary-500: oklch(0.72 0.045 359.76); /* ⬅ ANCHOR */
+  --secondary-600: oklch(0.6 0.065 359);
   --secondary-700: oklch(0.48 0.075 359);
   --secondary-800: oklch(0.38 0.068 359);
-  --secondary-900: oklch(0.28 0.050 359);
+  --secondary-900: oklch(0.28 0.05 359);
   --secondary-950: oklch(0.18 0.035 359);
 
   /* ==========================================================
@@ -133,16 +133,16 @@
      Anchor 500: oklch(0.52 0.045 245.52) — our slate blue
      Compressed range: starts at 0.94 for visible color
      ========================================================== */
-  --accent-50:  oklch(0.98 0.015 245);
+  --accent-50: oklch(0.98 0.015 245);
   --accent-100: oklch(0.93 0.028 245);
   --accent-200: oklch(0.84 0.038 245);
   --accent-300: oklch(0.76 0.045 245);
   --accent-400: oklch(0.64 0.048 245);
-  --accent-500: oklch(0.52 0.045 245.52);  /* ⬅ ANCHOR */
-  --accent-600: oklch(0.42 0.050 245);
+  --accent-500: oklch(0.52 0.045 245.52); /* ⬅ ANCHOR */
+  --accent-600: oklch(0.42 0.05 245);
   --accent-700: oklch(0.34 0.048 245);
   --accent-800: oklch(0.26 0.042 245);
-  --accent-900: oklch(0.20 0.032 245);
+  --accent-900: oklch(0.2 0.032 245);
   --accent-950: oklch(0.14 0.022 245);
 
   /* ========== SEMANTIC MAPPINGS ========== */
@@ -204,14 +204,14 @@
      PRIMARY SCALE (Teal - Dark Mode)
      Scale inverts: 50 is darkest, 950 is lightest
      ========================================================== */
-  --primary-50:  oklch(0.14 0.018 192);
-  --primary-100: oklch(0.18 0.020 192);
+  --primary-50: oklch(0.14 0.018 192);
+  --primary-100: oklch(0.18 0.02 192);
   --primary-200: oklch(0.24 0.024 192);
   --primary-300: oklch(0.32 0.028 192);
-  --primary-400: oklch(0.45 0.030 192);
+  --primary-400: oklch(0.45 0.03 192);
   --primary-500: oklch(0.58 0.028 192);
-  --primary-600: oklch(0.70 0.024 192);
-  --primary-700: oklch(0.80 0.018 192);
+  --primary-600: oklch(0.7 0.024 192);
+  --primary-700: oklch(0.8 0.018 192);
   --primary-800: oklch(0.88 0.012 192);
   --primary-900: oklch(0.94 0.008 192);
   --primary-950: oklch(0.97 0.005 192);
@@ -220,30 +220,30 @@
      SECONDARY SCALE (Rose - Dark Mode)
      Compressed range maintained in dark mode
      ========================================================== */
-  --secondary-50:  oklch(0.14 0.030 359);
-  --secondary-100: oklch(0.20 0.042 359);
+  --secondary-50: oklch(0.14 0.03 359);
+  --secondary-100: oklch(0.2 0.042 359);
   --secondary-200: oklch(0.28 0.055 359);
   --secondary-300: oklch(0.38 0.065 359);
-  --secondary-400: oklch(0.52 0.070 359);
+  --secondary-400: oklch(0.52 0.07 359);
   --secondary-500: oklch(0.65 0.065 359);
   --secondary-600: oklch(0.75 0.055 359);
   --secondary-700: oklch(0.84 0.042 359);
-  --secondary-800: oklch(0.90 0.030 359);
-  --secondary-900: oklch(0.94 0.020 359);
+  --secondary-800: oklch(0.9 0.03 359);
+  --secondary-900: oklch(0.94 0.02 359);
   --secondary-950: oklch(0.97 0.012 359);
 
   /* ==========================================================
      ACCENT SCALE (Slate Blue - Dark Mode)
      Compressed range maintained in dark mode
      ========================================================== */
-  --accent-50:  oklch(0.12 0.020 245);
+  --accent-50: oklch(0.12 0.02 245);
   --accent-100: oklch(0.18 0.028 245);
   --accent-200: oklch(0.26 0.038 245);
   --accent-300: oklch(0.36 0.048 245);
   --accent-400: oklch(0.48 0.052 245);
-  --accent-500: oklch(0.60 0.050 245);
+  --accent-500: oklch(0.6 0.05 245);
   --accent-600: oklch(0.72 0.042 245);
-  --accent-700: oklch(0.82 0.030 245);
+  --accent-700: oklch(0.82 0.03 245);
   --accent-800: oklch(0.88 0.022 245);
   --accent-900: oklch(0.93 0.015 245);
   --accent-950: oklch(0.97 0.008 245);
@@ -288,7 +288,7 @@
   --chart-1: var(--primary-500);
   --chart-2: var(--secondary-500);
   --chart-3: var(--accent-500);
-  --chart-4: oklch(0.80 0.07 80);
+  --chart-4: oklch(0.8 0.07 80);
   --chart-5: oklch(0.72 0.09 320);
 
   /* Sidebar */
@@ -309,4 +309,61 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Shimmer animation for thinking/reasoning states */
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    oklch(0.9 0.016 192 / 0.4) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Thinking dots animation */
+@keyframes thinking-bounce {
+  0%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-4px);
+  }
+}
+
+.thinking-dot {
+  animation: thinking-bounce 1.4s ease-in-out infinite;
+}
+
+.thinking-dot:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.thinking-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.thinking-dot:nth-child(3) {
+  animation-delay: 0.4s;
 }

@@ -1,6 +1,7 @@
 "use client";
 
-import "@assistant-ui/react-markdown/styles/dot.css";
+// Removed: import "@assistant-ui/react-markdown/styles/dot.css";
+// Using custom ThinkingIndicator instead of the default streaming dot
 
 import {
   type CodeHeaderProps,
