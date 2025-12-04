@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, type FC } from "react";
+import { useState, useCallback, useEffect, type FC } from "react";
 import { ComposerPrimitive, ThreadPrimitive } from "@assistant-ui/react";
 import { motion } from "motion/react";
 import { ArrowUpIcon, Square, Search } from "lucide-react";
@@ -11,19 +11,16 @@ import { GuidedToggle } from "./guided-toggle";
 import { AutocompleteSuggestions } from "./autocomplete-suggestions";
 import { QuickActions } from "./quick-actions";
 import { useSuggestionFilter } from "@/hooks/use-suggestion-filter";
+import { useGuidedStudyContextOptional } from "@/components/assistant-ui/guided-study";
 
 export type HeroComposerProps = {
   placeholder?: string;
-  onTranslationChange?: (translation: string) => void;
-  onGuidedChange?: (guided: boolean) => void;
   defaultTranslation?: string;
   defaultGuided?: boolean;
 };
 
 export const HeroComposer: FC<HeroComposerProps> = ({
   placeholder = "Search for a verse, topic, or feeling...",
-  onTranslationChange,
-  onGuidedChange,
   defaultTranslation = "NIV",
   defaultGuided = false,
 }) => {
@@ -32,23 +29,34 @@ export const HeroComposer: FC<HeroComposerProps> = ({
   const [inputValue, setInputValue] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(false);
 
+  const guidedStudy = useGuidedStudyContextOptional();
   const { verses, topics } = useSuggestionFilter(inputValue);
 
-  const handleTranslationChange = useCallback(
-    (value: string) => {
-      setTranslation(value);
-      onTranslationChange?.(value);
-    },
-    [onTranslationChange]
-  );
+  const handleTranslationChange = useCallback((value: string) => {
+    setTranslation(value);
+  }, []);
 
   const handleGuidedChange = useCallback(
     (checked: boolean) => {
       setGuided(checked);
-      onGuidedChange?.(checked);
+      // Activate or deactivate guided study mode
+      if (guidedStudy) {
+        if (checked) {
+          guidedStudy.startGuided(translation);
+        } else {
+          guidedStudy.deactivate();
+        }
+      }
     },
-    [onGuidedChange]
+    [guidedStudy, translation],
   );
+
+  // Sync guided state with context
+  useEffect(() => {
+    if (guidedStudy && guided && !guidedStudy.isActive) {
+      guidedStudy.startGuided(translation);
+    }
+  }, [guidedStudy, guided, translation]);
 
   return (
     <motion.div
@@ -79,13 +87,18 @@ export const HeroComposer: FC<HeroComposerProps> = ({
                     setShowSuggestions(e.target.value.length >= 1);
                   }}
                   onFocus={() => setShowSuggestions(inputValue.length >= 1)}
-                  onBlur={() => setTimeout(() => setShowSuggestions(false), 150)}
+                  onBlur={() =>
+                    setTimeout(() => setShowSuggestions(false), 150)
+                  }
                 />
 
                 <div className="flex items-center gap-2 pl-2">
                   <ThreadPrimitive.If running={false}>
                     <ComposerPrimitive.Send asChild>
-                      <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                      <motion.div
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
                         <TooltipIconButton
                           tooltip="Search"
                           side="bottom"
@@ -103,7 +116,10 @@ export const HeroComposer: FC<HeroComposerProps> = ({
 
                   <ThreadPrimitive.If running>
                     <ComposerPrimitive.Cancel asChild>
-                      <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                      <motion.div
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
                         <Button
                           type="button"
                           variant="default"

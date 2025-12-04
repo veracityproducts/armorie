@@ -5,6 +5,7 @@ import { AssistantRuntimeProvider } from "@assistant-ui/react";
 import { useLangGraphRuntime } from "@assistant-ui/react-langgraph";
 import { Thread } from "@/components/assistant-ui/thread";
 import { ArmorieSidebar } from "@/components/assistant-ui/armorie-sidebar";
+import { GuidedStudyProvider } from "@/components/assistant-ui/guided-study";
 import { createThread, getThreadState, sendMessage } from "@/lib/chatApi";
 
 export const Assistant = () => {
@@ -76,12 +77,14 @@ export const Assistant = () => {
 
   return (
     <AssistantRuntimeProvider runtime={runtime}>
-      <div className="flex h-full gap-2">
-        <ArmorieSidebar />
-        <div className="flex-1 bg-card rounded-lg mr-2 my-2 overflow-hidden">
-          <Thread />
+      <GuidedStudyProvider>
+        <div className="flex h-full gap-2">
+          <ArmorieSidebar />
+          <div className="flex-1 bg-card rounded-lg mr-2 my-2 overflow-hidden">
+            <Thread />
+          </div>
         </div>
-      </div>
+      </GuidedStudyProvider>
     </AssistantRuntimeProvider>
   );
 };
